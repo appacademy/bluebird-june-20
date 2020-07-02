@@ -36,6 +36,47 @@ class Chirp < ApplicationRecord
         end
     end
 
+
+    # Find all the chirps authored by the user, "wakka_wakka"
+
+    Chirp.joins(:author).where(users: { username: "wakka_wakka" })
+            #association name  #table name  #column in that table
+
+    Chirp.joins(:likers).where("users.political_affiliation = 'JavaScript'")
+
+
+    # Find all of the chirps liked by users that are politically affiliated with Javascript
+    
+    Chirp.joins(:likers).where("users.political_affiliation = 'JavaScript'")
+
+
+    # Find the chirps that have no likes
+
+    Chirp.left_outer_joins(:likes).where(likes: { id: nil })
+    Chirp.left_outer_joins(:likes).where("likes.id IS NULL")
+
+    Chirp
+        .left_outer_joins(:likes)
+        .where(likes: { id: nil })
+
+
+    # Find the number of likes each chirp has
+
+    Chirp.select(:id, :body, "count(*) AS num_likes").joins(:likes).group(:id)
+
+    Chirp
+        .select(:id, :body, "count(*) AS num_likes")
+        .joins(:likes)
+        .group(:id)
+
+
+
+    # Find chirps with at least 3 likes
+
+    Chirp.joins(:likes).group(:id).having("count(*) >= 3")
+
+
+
     # Includes #
 
     def self.see_chirp_authors_n_plus_one
@@ -44,7 +85,7 @@ class Chirp < ApplicationRecord
 
         # the "N"
         chirps.each do |chirp|
-        puts chirp.author.username
+            puts chirp.author.username
         end
 
     end
@@ -55,7 +96,7 @@ class Chirp < ApplicationRecord
 
         chirps.each do |chirp| 
         # uses pre-fetched data 
-        puts chirp.author.username
+            puts chirp.author.username
         end
     end
 
@@ -65,18 +106,18 @@ class Chirp < ApplicationRecord
         chirps = Chirp.all
 
         chirps.each do |chirp|
-        puts chirp.likes.length
+            puts chirp.likes.length
         end
     end
 
     def self.see_chirp_num_likes_optimized
         chirps_with_likes = Chirp
-        .select("chirps.*, COUNT(*) AS num_likes")
-        .joins(:likes)
-        .group(:id)
+            .select("chirps.*, COUNT(*) AS num_likes")
+            .joins(:likes)
+            .group(:id)
     
         chirps_with_likes.each do |chirp|
-        puts chirp.num_likes
+            puts chirp.num_likes
         end
     end
 
