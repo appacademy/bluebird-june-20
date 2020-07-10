@@ -9,7 +9,8 @@
 #  political_affiliation :string           not null
 #
 class User < ApplicationRecord # Classnames and filenames are singular
-    validates :username, :email, :age, presence: true, uniqueness: true
+    validates :username, :email, presence: true, uniqueness: true
+    validates :age, presence: true
                # column names,        validation rules
 
     has_many :chirps, # method name that we will have access to
