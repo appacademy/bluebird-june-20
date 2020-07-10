@@ -1,0 +1,37 @@
+<h1>NEW USER FORM VIEW</h1>
+<%# new view passes info TO the create action upon CLICKING THE SUBMIT BUTTON!%>
+<%# create doesn't have it's own view %>
+
+
+<%= render 'form', user: @user, type: :new %>
+<%# refactor to use a partial %>
+
+
+
+
+<!--
+<form action="<%= users_url %>" method="POST">
+  <%# the action should be where we want to GO (send the info from the form) %>
+  <%# to the CREATE action! %>
+
+  <label for="username">username: </label>
+  <input type="text" id="username" name="user[username]" value="<%= @user.username %>">
+  <%# if label and input are independent, need the **for / id** to match %>
+  <br>
+
+  <label>age: 
+    <input type="text" name="user[age]" value="<%= @user.age %>">
+  </label>
+  <%# don't need **for / id** if input is nested under the label %>
+  
+  <br>
+
+  <label>email: 
+    <input type="text" name="user[email]" value="<%= @user.email %>">
+  </label>
+
+  <input type="submit" value="Create User">
+  <%# input with type submit makes a button %>
+</form>
+
+!-->

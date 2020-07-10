@@ -1,0 +1,46 @@
+<h1>EDIT USER FORM VIEW</h1>
+<%# edit view passes info TO the UPDATE action upon CLICKING THE SUBMIT BUTTON!%>
+<%# update doesn't have it's own view %>
+
+<%= render 'form', user: @user, type: :edit %>
+
+
+
+
+
+
+
+
+
+
+<!--
+<form action="<%= user_url(@user) %>" method="POST">
+  <%# the action should be where we want to GO (send the info from the form) %>
+  <%# to the UPDATE action! %>
+  <input type="hidden" name="_method" value="PATCH">
+  <%# Forms will only allow GET or POST so we have to override the method %>
+  <%# with a hidden input %>
+  <%# CAN'T over write a GET, so our method needs to be POST in the form tag %>
+  <%# so we can over write it! %>
+
+  <label for="username">username: </label>
+  <input type="text" id="username" name="user[username]" value="<%= @user.username %>">
+  <%# if label and input are independent, need the **for / id** to match %>
+  <br>
+
+  <label>age: 
+    <input type="text" name="user[age]" value="<%= @user.age %>">
+  </label>
+  <%# don't need **for / id** if input is nested under the label %>
+  
+  <br>
+
+  <label>email: 
+    <input type="text" name="user[email]" value="<%= @user.email %>">
+  </label>
+
+  <input type="submit" value="Update User">
+  <%# input with type submit makes a button %>
+</form>
+
+!-->

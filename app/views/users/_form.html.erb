@@ -1,0 +1,49 @@
+<h1>USER FORM PARTIAL</h1>
+
+<%# view passes info TO the CREATE/UPDATE action upon CLICKING THE SUBMIT BUTTON!%>
+<%# create/update don't have their own view %>
+
+<% if type == :new %>
+  <%# type comes from the key we set from our edit/new forms where we %>
+  <%# render the partial %>
+  <% action_url = users_url %>
+  <% button_text = 'Create User' %>
+<% else %>
+  <% action_url = user_url(user) %>
+  <%# not using instance variable because we aren't coming directly from controller! %>
+  <%# comes from the key value pairs passed when we rendered the partial from another view %>
+  <% button_text = 'Update User' %>
+<% end %>
+
+<form action="<%= action_url %>" method="POST">
+  <%# the action should be where we want to GO (send the info from the form) %>
+  <%# to the UPDATE/CREATE action! %>
+
+  <% if type == :edit %>
+    <input type="hidden" name="_method" value="PATCH">
+    <%# Forms will only allow GET or POST so we have to override the method %>
+    <%# with a hidden input if we need to go to edit%>
+    <%# CAN'T over write a GET, so our method needs to be POST in the form tag %>
+    <%# so we can over write it! %>
+  <% end %>
+
+  <label for="username">username: </label>
+  <input type="text" id="username" name="user[username]" value="<%= user.username %>">
+  <%# if label and input are independent, need the **for / id** to match %>
+
+  <br>
+
+  <label>age: 
+    <input type="text" name="user[age]" value="<%= user.age %>">
+  </label>
+  <%# don't need **for / id** if input is nested under the label %>
+  
+  <br>
+
+  <label>email: 
+    <input type="text" name="user[email]" value="<%= user.email %>">
+  </label>
+
+  <input type="submit" value="<%= button_text%>" >
+  <%# input with type submit makes a button %>
+</form>

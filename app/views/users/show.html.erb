@@ -1,0 +1,22 @@
+<h1>USER SHOW PAGE</h1>
+<%# html snippet worth it! %>
+<%# pe + tab = returning erb %>
+<%# er + tab = non returning erb %>
+
+<%= render 'user', banana: @user, action: :show %>
+<%# 'user' == name of partial %>
+<%# dark blue banana symbol == setting key of banana for our partial to access%>
+<%# light blue @user (value) instance variable we got from controller %>
+
+
+<%# form to allow us to DELETE a user %>
+<%# need a form because DELETE is NOT a GET request %>
+<form action="<%= user_url(@user) %>" method="post">
+  <%# not in our partial so we have the instance variable @user! %>
+
+  <input type="hidden" name="_method" value="DELETE">
+  <%# want to delete the user so we DON'T want POST - want DELETE (not destroy %>
+  <%# - destroy is the name of controller action double check with rails routes) %>
+
+  <input type="submit" value="Delete User">
+</form>

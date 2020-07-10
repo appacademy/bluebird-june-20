@@ -1,0 +1,22 @@
+<h4>USER PARTIAL</h4>
+<%# file name with underscore = partial! %>
+<%# partial name could be whatever we want (doesn't have to be user) %>
+<%# just need the underscore! %>
+
+<% if action == :show %>
+  <a href="<%= users_url %>">back to user index!</a>
+  <%# need the RETURNING erb above %>
+  <%# spaces INSIDE erb tag are chill %>
+  <%# spaces OUTSIDE are NOT (within the string) %>
+<% else %> <%# action == :index%>
+  <a href="<%= user_url(banana) %>">user show page!</a>
+  <a href="<%= edit_user_url(banana) %>">edit this user!</a>
+  <%# give rails the user object and rails will know to take the id  %>
+  <%# out to use for wildcard %>
+<% end %>
+
+<ul>
+  <li><%= banana.username %></li>
+  <li><%= banana.age %></li>
+  <li><%= banana.email %></li>
+</ul>
