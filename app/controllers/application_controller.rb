@@ -22,5 +22,13 @@ class ApplicationController < ActionController::Base
     session[:session_token] = nil # get rid of old token
     @current_user = nil # clears instance variable
   end
+
+  def require_logged_in
+    redirect_to new_session_url if !logged_in?
+  end
+
+  def require_logged_out
+    redirect_to users_url if logged_in?
+  end
   
 end
