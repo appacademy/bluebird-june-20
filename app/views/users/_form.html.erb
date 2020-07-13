@@ -30,7 +30,14 @@
   <label for="username">username: </label>
   <input type="text" id="username" name="user[username]" value="<%= user.username %>">
   <%# if label and input are independent, need the **for / id** to match %>
+  <br>
 
+  <% if type == :new %>
+    <label>Password:
+      <input type="password" name="user[password]" value="">
+    </label>
+  <% end %>
+  
   <br>
 
   <label>age: 

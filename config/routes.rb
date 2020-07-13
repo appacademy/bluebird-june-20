@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :chirps, only: [:index]
   end
+  resource :session, only: [:new, :create, :destroy]
   
   resources :chirps, only: [:index]
 

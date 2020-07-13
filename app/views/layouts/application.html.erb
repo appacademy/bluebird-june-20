@@ -10,6 +10,15 @@
   </head>
 
   <body>
+    <% if !logged_in? %>
+      <a href="<%= new_session_url %>">Login Time</a>
+    <% else %>
+      <h3>Welcome <%= current_user.username %>!</h3>
+      <form action="<%= session_url %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Logout Time">
+      </form>
+    <% end %>
     <%= yield %>
   </body>
 </html>

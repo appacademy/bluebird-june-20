@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     # debugger
     @user = User.new(user_params)
     if @user.save
-      # render json: @user
+      login!(@user)
       redirect_to user_url(@user)
       # after user is successfully created, send the client to the show page 
       # for the user that was just created 
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :age, :political_affiliation)
+    params.require(:user).permit(:username, :email, :age, :political_affiliation, :password)
   end
   
 end

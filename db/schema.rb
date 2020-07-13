@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_10_144945) do
+ActiveRecord::Schema.define(version: 2020_07_13_164519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,16 +21,6 @@ ActiveRecord::Schema.define(version: 2020_07_10_144945) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_chirps_on_author_id"
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.string "body", null: false
-    t.integer "author_id", null: false
-    t.integer "chirp_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_comments_on_author_id"
-    t.index ["chirp_id"], name: "index_comments_on_chirp_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -47,7 +37,10 @@ ActiveRecord::Schema.define(version: 2020_07_10_144945) do
     t.string "email", null: false
     t.integer "age", null: false
     t.string "political_affiliation"
+    t.string "password_digest", null: false
+    t.string "session_token", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
