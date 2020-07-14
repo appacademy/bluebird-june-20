@@ -1,0 +1,7 @@
+<h2>Chirps Index</h2>
+
+<% @chirps.each do |chirp| %>
+    <p><%= chirp.body %></p>
+    <p>Author: <%= chirp.author.username %></p>
+    <br>
+<% end %>

@@ -31,7 +31,9 @@ class UsersController < ApplicationController
       # after user is successfully created, send the client to the show page 
       # for the user that was just created 
     else
-      render json: @user.errors.full_messages, status: 422
+      flash.now[:errors] = @user.errors.full_messages
+      render :new
+      # render json: @user.errors.full_messages, status: 422
     end
   end
 

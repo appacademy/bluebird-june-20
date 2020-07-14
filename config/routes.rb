@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   end
   resource :session, only: [:new, :create, :destroy]
   
-  resources :chirps, only: [:index]
-
-  # get '/chirps', to: 'chirps#index'
+  resources :chirps, only: [:index, :create, :new]
   
+  # root to: "controller#action"
+  root to: "chirps#index"
 end

@@ -18,7 +18,8 @@
 <form action="<%= action_url %>" method="POST">
   <%# the action should be where we want to GO (send the info from the form) %>
   <%# to the UPDATE/CREATE action! %>
-
+  <%#= auth_token %>
+  <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %>>
   <% if type == :edit %>
     <input type="hidden" name="_method" value="PATCH">
     <%# Forms will only allow GET or POST so we have to override the method %>

@@ -1,6 +1,7 @@
 <h2>Login!</h2>
 
 <form action="<%= session_url %>" method="POST">
+  <%= auth_token %>
   <label>Username:
     <input type="text" name="user[username]" value="">
   </label>
