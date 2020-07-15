@@ -7,7 +7,7 @@
   <%# type comes from the key we set from our edit/new forms where we %>
   <%# render the partial %>
   <% action_url = users_url %>
-  <% button_text = 'Create User' %>
+  <% button_text = 'signup' %>
 <% else %>
   <% action_url = user_url(user) %>
   <%# not using instance variable because we aren't coming directly from controller! %>
@@ -28,7 +28,7 @@
     <%# so we can over write it! %>
   <% end %>
 
-  <label for="username">username: </label>
+  <label for="username">Username: </label>
   <input type="text" id="username" name="user[username]" value="<%= user.username %>">
   <%# if label and input are independent, need the **for / id** to match %>
   <br>
@@ -41,14 +41,14 @@
   
   <br>
 
-  <label>age: 
+  <label>Age: 
     <input type="text" name="user[age]" value="<%= user.age %>">
   </label>
   <%# don't need **for / id** if input is nested under the label %>
   
   <br>
 
-  <label>email: 
+  <label>Email: 
     <input type="text" name="user[email]" value="<%= user.email %>">
   </label>
 

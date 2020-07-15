@@ -11,7 +11,7 @@
 #  session_token         :string           not null
 #
 class User < ApplicationRecord # Classnames and filenames are singular
-    validates :email, :session_token, presence: true, uniqueness: true
+    # validates :email, :session_token, presence: true, uniqueness: true
     validates :username, presence: true
     validates :username, uniqueness: true
     validates :age, :password_digest, presence: true
