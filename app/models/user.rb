@@ -11,7 +11,9 @@
 #  session_token         :string           not null
 #
 class User < ApplicationRecord # Classnames and filenames are singular
-    validates :username, :email, :session_token, presence: true, uniqueness: true
+    validates :email, :session_token, presence: true, uniqueness: true
+    validates :username, presence: true
+    validates :username, uniqueness: true
     validates :age, :password_digest, presence: true
     validates :password, length: {minimum: 6, allow_nil: true}
     # validations require a getter method for the attribute
@@ -53,7 +55,7 @@ class User < ApplicationRecord # Classnames and filenames are singular
     # everytime we instantiate a new rails object, rails will call the setter
     # method for all attributes called in the .new
     def password=(password)
-        puts "this is the password setter"
+        # puts "this is the password setter"
         @password = password
         self.password_digest = BCrypt::Password.create(password) 
         # ^ creates password_digest from password
@@ -61,12 +63,12 @@ class User < ApplicationRecord # Classnames and filenames are singular
 
     # getter used during validation
     def password
-        puts "this is the password getter"
+        # puts "this is the password getter"
         @password
     end
 
     def ensure_session_token
-        puts "this is setting your session_token"
+        # puts "this is setting your session_token"
         self.session_token ||= SecureRandom::urlsafe_base64
     end
 
